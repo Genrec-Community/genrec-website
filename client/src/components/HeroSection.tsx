@@ -12,76 +12,81 @@ export default function HeroSection() {
       if (!container) return;
 
       const comet = document.createElement("div");
-      comet.className = "comet-particle";
+      const cometSize = 4 + Math.random() * 6;
+      const speed = 1.5 + Math.random() * 2;
       
-      // Create comets from different directions but more structured
-      const directions = [
-        { x: -200, y: Math.random() * window.innerHeight },
-        { x: window.innerWidth + 200, y: Math.random() * window.innerHeight },
-        { x: Math.random() * window.innerWidth, y: -200 },
-        { x: Math.random() * window.innerWidth, y: window.innerHeight + 200 }
-      ];
-      
-      const direction = directions[Math.floor(Math.random() * directions.length)];
+      // More varied starting positions for natural comet paths
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.max(window.innerWidth, window.innerHeight) * 0.8;
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
       
+      const startX = centerX + Math.cos(angle) * distance;
+      const startY = centerY + Math.sin(angle) * distance;
+      
+      // Target slightly off-center for more natural movement
+      const targetX = centerX + (Math.random() - 0.5) * 200;
+      const targetY = centerY + (Math.random() - 0.5) * 200;
+      
       comet.style.position = "absolute";
-      comet.style.left = `${direction.x}px`;
-      comet.style.top = `${direction.y}px`;
-      comet.style.width = "8px";
-      comet.style.height = "8px";
-      comet.style.background = "white";
+      comet.style.left = `${startX}px`;
+      comet.style.top = `${startY}px`;
+      comet.style.width = `${cometSize}px`;
+      comet.style.height = `${cometSize}px`;
+      comet.style.background = "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, transparent 100%)";
       comet.style.borderRadius = "50%";
-      comet.style.boxShadow = "0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.7), 0 0 90px rgba(255,255,255,0.4)";
-      comet.style.zIndex = "5";
+      comet.style.boxShadow = `0 0 ${cometSize * 4}px rgba(255,255,255,0.8), 0 0 ${cometSize * 8}px rgba(255,255,255,0.4)`;
+      comet.style.zIndex = "3";
       
-      // Calculate angle for tail direction
-      const angle = Math.atan2(centerY - direction.y, centerX - direction.x);
+      // Create dynamic tail based on movement direction
+      const tailLength = 60 + Math.random() * 100;
+      const movementAngle = Math.atan2(targetY - startY, targetX - startX);
       
-      // Create tail pointing in direction of movement
       const tail = document.createElement("div");
       tail.style.position = "absolute";
       tail.style.left = "50%";
       tail.style.top = "50%";
-      tail.style.width = "120px";
-      tail.style.height = "3px";
-      tail.style.background = "linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)";
-      tail.style.transform = `translate(-50%, -50%) rotate(${angle + Math.PI}rad)`;
-      tail.style.transformOrigin = "right center";
+      tail.style.width = `${tailLength}px`;
+      tail.style.height = "2px";
+      tail.style.background = "linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 30%, transparent 100%)";
+      tail.style.transform = `translate(-50%, -50%) rotate(${movementAngle + Math.PI}rad)`;
+      tail.style.transformOrigin = "0% 50%";
       comet.appendChild(tail);
       
       container.appendChild(comet);
 
-      // Animate comet toward center and disappear when approaching GENREC
+      // Natural comet trajectory with acceleration and fade
+      const totalDistance = Math.sqrt(Math.pow(targetX - startX, 2) + Math.pow(targetY - startY, 2));
+      const duration = (totalDistance / speed) * 10;
+      
       const animation = comet.animate([
         {
-          left: `${direction.x}px`,
-          top: `${direction.y}px`,
+          left: `${startX}px`,
+          top: `${startY}px`,
           opacity: "0",
-          transform: "scale(0.3)"
+          transform: "scale(0.2)"
         },
         {
-          left: `${centerX + (direction.x - centerX) * 0.3}px`,
-          top: `${centerY + (direction.y - centerY) * 0.3}px`,
-          opacity: "1",
+          left: `${startX + (targetX - startX) * 0.2}px`,
+          top: `${startY + (targetY - startY) * 0.2}px`,
+          opacity: "0.8",
           transform: "scale(1)"
         },
         {
-          left: `${centerX + (Math.random() - 0.5) * 150}px`,
-          top: `${centerY + (Math.random() - 0.5) * 150}px`,
-          opacity: "0.8",
-          transform: "scale(0.8)"
+          left: `${startX + (targetX - startX) * 0.7}px`,
+          top: `${startY + (targetY - startY) * 0.7}px`,
+          opacity: "1",
+          transform: "scale(1.2)"
         },
         {
-          left: `${centerX + (Math.random() - 0.5) * 80}px`,
-          top: `${centerY + (Math.random() - 0.5) * 80}px`,
+          left: `${targetX}px`,
+          top: `${targetY}px`,
           opacity: "0",
-          transform: "scale(0.1)"
+          transform: "scale(0.3)"
         }
       ], {
-        duration: 2500 + Math.random() * 1500,
-        easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        duration: Math.max(1500, Math.min(duration, 4000)),
+        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)"
       });
 
       animation.onfinish = () => {
@@ -89,16 +94,104 @@ export default function HeroSection() {
       };
     };
 
+    const createShootingStar = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const shootingStar = document.createElement("div");
+      const startSide = Math.floor(Math.random() * 4);
+      let startX, startY, endX, endY;
+      
+      // Create shooting stars from edges
+      switch (startSide) {
+        case 0: // Top
+          startX = Math.random() * window.innerWidth;
+          startY = -50;
+          endX = startX + (Math.random() - 0.5) * 400;
+          endY = window.innerHeight + 50;
+          break;
+        case 1: // Right
+          startX = window.innerWidth + 50;
+          startY = Math.random() * window.innerHeight;
+          endX = -50;
+          endY = startY + (Math.random() - 0.5) * 400;
+          break;
+        case 2: // Bottom
+          startX = Math.random() * window.innerWidth;
+          startY = window.innerHeight + 50;
+          endX = startX + (Math.random() - 0.5) * 400;
+          endY = -50;
+          break;
+        default: // Left
+          startX = -50;
+          startY = Math.random() * window.innerHeight;
+          endX = window.innerWidth + 50;
+          endY = startY + (Math.random() - 0.5) * 400;
+      }
+      
+      shootingStar.style.position = "absolute";
+      shootingStar.style.left = `${startX}px`;
+      shootingStar.style.top = `${startY}px`;
+      shootingStar.style.width = "3px";
+      shootingStar.style.height = "3px";
+      shootingStar.style.background = "white";
+      shootingStar.style.borderRadius = "50%";
+      shootingStar.style.boxShadow = "0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.6)";
+      shootingStar.style.zIndex = "2";
+      
+      // Long tail for shooting star
+      const angle = Math.atan2(endY - startY, endX - startX);
+      const trail = document.createElement("div");
+      trail.style.position = "absolute";
+      trail.style.left = "50%";
+      trail.style.top = "50%";
+      trail.style.width = "200px";
+      trail.style.height = "1px";
+      trail.style.background = "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 20%, transparent 100%)";
+      trail.style.transform = `translate(-50%, -50%) rotate(${angle + Math.PI}rad)`;
+      trail.style.transformOrigin = "0% 50%";
+      shootingStar.appendChild(trail);
+      
+      container.appendChild(shootingStar);
+      
+      const animation = shootingStar.animate([
+        {
+          left: `${startX}px`,
+          top: `${startY}px`,
+          opacity: "1"
+        },
+        {
+          left: `${endX}px`,
+          top: `${endY}px`,
+          opacity: "0"
+        }
+      ], {
+        duration: 800 + Math.random() * 1200,
+        easing: "linear"
+      });
+
+      animation.onfinish = () => {
+        shootingStar.remove();
+      };
+    };
+
     // Create initial comets
-    for (let i = 0; i < 50; i++) {
-      setTimeout(createComet, i * 100);
+    for (let i = 0; i < 30; i++) {
+      setTimeout(createComet, i * 200);
     }
 
-    // Continue creating comets
-    const interval = setInterval(createComet, 400);
+    // Create occasional shooting stars
+    for (let i = 0; i < 5; i++) {
+      setTimeout(createShootingStar, i * 2000);
+    }
+
+    // Continue creating effects
+    const cometInterval = setInterval(createComet, 800);
+    const shootingStarInterval = setInterval(createShootingStar, 3000);
     
     return () => {
-      clearInterval(interval);
+      clearInterval(cometInterval);
+      clearInterval(shootingStarInterval);
     };
   }, []);
 
