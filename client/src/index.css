@@ -67,6 +67,19 @@
     transform: translateY(-50%);
   }
 
+  .comet-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
   .horizontal-scroll {
     scrollbar-width: none;
     -ms-overflow-style: none;
