@@ -14,53 +14,68 @@ export default function HeroSection() {
       const comet = document.createElement("div");
       comet.className = "comet-particle";
       
-      // Random starting position from edge of screen
-      const angle = Math.random() * 360;
-      const radius = Math.max(window.innerWidth, window.innerHeight) * 0.8;
+      // Create comets from different directions but more structured
+      const directions = [
+        { x: -200, y: Math.random() * window.innerHeight },
+        { x: window.innerWidth + 200, y: Math.random() * window.innerHeight },
+        { x: Math.random() * window.innerWidth, y: -200 },
+        { x: Math.random() * window.innerWidth, y: window.innerHeight + 200 }
+      ];
+      
+      const direction = directions[Math.floor(Math.random() * directions.length)];
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
       
-      const startX = centerX + Math.cos(angle * Math.PI / 180) * radius;
-      const startY = centerY + Math.sin(angle * Math.PI / 180) * radius;
-      
       comet.style.position = "absolute";
-      comet.style.left = `${startX}px`;
-      comet.style.top = `${startY}px`;
-      comet.style.width = "6px";
-      comet.style.height = "6px";
+      comet.style.left = `${direction.x}px`;
+      comet.style.top = `${direction.y}px`;
+      comet.style.width = "8px";
+      comet.style.height = "8px";
       comet.style.background = "white";
       comet.style.borderRadius = "50%";
-      comet.style.boxShadow = "0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.5), 0 0 60px rgba(255,255,255,0.3)";
+      comet.style.boxShadow = "0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.7), 0 0 90px rgba(255,255,255,0.4)";
       comet.style.zIndex = "5";
       
-      // Create tail
+      // Calculate angle for tail direction
+      const angle = Math.atan2(centerY - direction.y, centerX - direction.x);
+      
+      // Create tail pointing in direction of movement
       const tail = document.createElement("div");
       tail.style.position = "absolute";
-      tail.style.right = "100%";
+      tail.style.left = "50%";
       tail.style.top = "50%";
-      tail.style.width = "80px";
-      tail.style.height = "2px";
-      tail.style.background = "linear-gradient(90deg, transparent, rgba(255,255,255,0.8))";
-      tail.style.transform = "translateY(-50%)";
+      tail.style.width = "120px";
+      tail.style.height = "3px";
+      tail.style.background = "linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)";
+      tail.style.transform = `translate(-50%, -50%) rotate(${angle + Math.PI}rad)`;
+      tail.style.transformOrigin = "right center";
       comet.appendChild(tail);
       
       container.appendChild(comet);
 
-      // Animate comet toward center
+      // Animate comet toward center with easing
       const animation = comet.animate([
         {
-          left: `${startX}px`,
-          top: `${startY}px`,
-          opacity: "0"
+          left: `${direction.x}px`,
+          top: `${direction.y}px`,
+          opacity: "0",
+          transform: "scale(0.5)"
         },
         {
-          left: `${centerX}px`,
-          top: `${centerY}px`,
-          opacity: "1"
+          left: `${centerX + (Math.random() - 0.5) * 100}px`,
+          top: `${centerY + (Math.random() - 0.5) * 100}px`,
+          opacity: "1",
+          transform: "scale(1)"
+        },
+        {
+          left: `${centerX + (Math.random() - 0.5) * 50}px`,
+          top: `${centerY + (Math.random() - 0.5) * 50}px`,
+          opacity: "0",
+          transform: "scale(0.3)"
         }
       ], {
-        duration: 2000 + Math.random() * 1500,
-        easing: "ease-in"
+        duration: 3000 + Math.random() * 2000,
+        easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
       });
 
       animation.onfinish = () => {
@@ -69,12 +84,12 @@ export default function HeroSection() {
     };
 
     // Create initial comets
-    for (let i = 0; i < 15; i++) {
-      setTimeout(createComet, i * 200);
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createComet, i * 300);
     }
 
     // Continue creating comets
-    const interval = setInterval(createComet, 800);
+    const interval = setInterval(createComet, 1200);
     
     return () => {
       clearInterval(interval);
