@@ -107,10 +107,19 @@ export default function HeroSection() {
         </motion.h1>
         
         <motion.p
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 1.2 }}
+          className="text-2xl md:text-3xl font-medium mb-4 tracking-wide text-gray-300"
+        >
+          Build • Inspire • Innovate
+        </motion.p>
+        
+        <motion.p
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 1.2 }}
-          className="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto leading-relaxed text-gray-300"
+          transition={{ duration: 1.2, ease: "easeOut", delay: 1.4 }}
+          className="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto leading-relaxed text-gray-400"
         >
           Crafting next-generation digital experiences with cutting-edge technology
         </motion.p>
