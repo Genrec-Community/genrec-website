@@ -3,39 +3,40 @@ import { useRef } from "react";
 
 const projects = [
   {
-    title: "NeuroLink AI",
+    title: "DataScience Agent",
     category: "AI Platform",
-    description: "NeuroLink AI represents the pinnacle of machine learning innovation, transforming complex data landscapes into actionable business intelligence. Our revolutionary platform leverages cutting-edge neural networks and deep learning algorithms to process massive datasets in real-time, delivering unprecedented accuracy in predictive analytics. Built with enterprise-grade security and scalability, NeuroLink AI empowers organizations to make data-driven decisions with confidence. The platform features advanced natural language processing, computer vision capabilities, and automated model optimization that adapts to evolving data patterns. From fraud detection to customer behavior analysis, NeuroLink AI has revolutionized how businesses understand and interact with their data, achieving 99.7% accuracy in pattern recognition and reducing processing time by 85%.",
-    technologies: ["React", "Python", "TensorFlow", "AWS", "Docker"],
+    description: "The Data Science Platform is an all-in-one, modern web application designed to simplify and democratize the process of data analysis, visualization, and machine learning for users of all skill levels. Inspired by the familiar look and feel of Excel, it bridges the gap between advanced data science capabilities and the everyday business user, offering a powerful yet approachable environment for turning raw data into actionable insights. At its core, the platform allows users to seamlessly upload datasets in CSV or Excel format. Once uploaded, users can immediately explore their data with comprehensive profiling tools that generate rich statistical summaries and visual cues, helping users quickly understand distributions, spot anomalies, and identify patterns. For organizations that deal with messy or inconsistent data, the platform's data cleaning tools are a game-changer. These advanced utilities guide users through the process of handling missing values, detecting outliers, and transforming datasets—all without the need for manual coding or technical know-how. One of the standout features of the platform is its integrated machine learning module. Business analysts and data scientists alike can train, evaluate, and compare machine learning models within a few clicks. The system supports feature importance analysis, enabling users to interpret which variables drive their predictions, and provides performance metrics such as accuracy, precision, recall, and F1-score in an intuitive format.",
+    technologies: ["Python", "Pandas", "Scikit-learn", "Streamlit", "PostgreSQL"],
     year: "2024",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800",
-    status: "green"
+    status: "green",
+    github: "https://github.com/Shyamnath-Sankar/Datascience-AI-Agent.git"
   },
   {
-    title: "CloudStore Pro",
-    category: "E-Commerce", 
-    description: "CloudStore Pro redefines the e-commerce experience with its next-generation platform that seamlessly integrates AI-powered recommendations, advanced analytics, and frictionless payment processing. This comprehensive solution transforms online retail through intelligent product discovery, personalized shopping experiences, and real-time inventory management. The platform's sophisticated recommendation engine analyzes user behavior, purchase history, and market trends to deliver hyper-personalized product suggestions that increase conversion rates by 340%. Built on a microservices architecture, CloudStore Pro handles millions of transactions daily while maintaining sub-second response times. Advanced features include dynamic pricing optimization, multi-channel inventory synchronization, automated customer service through AI chatbots, and comprehensive seller analytics dashboard. The platform supports over 50 payment gateways and provides seamless integration with major shipping providers worldwide.",
-    technologies: ["Next.js", "Stripe", "GraphQL", "Redis", "PostgreSQL"],
+    title: "Enterprise CRM & ERP",
+    category: "Business Solutions", 
+    description: "Our comprehensive CRM and ERP software suite revolutionizes business operations by seamlessly integrating customer relationship management with enterprise resource planning in a unified, intelligent platform. This enterprise-grade solution transforms how organizations manage their entire business ecosystem, from lead generation to customer retention, and from inventory management to financial reporting. The CRM module features advanced contact management, sales pipeline automation, marketing campaign orchestration, and customer service ticketing systems with AI-powered sentiment analysis. Built-in analytics provide deep insights into customer behavior, sales performance, and market trends, enabling data-driven decision making. The ERP component encompasses comprehensive modules for inventory management, supply chain optimization, human resources, financial accounting, and project management. Real-time dashboards and customizable reporting tools provide executives with complete visibility into business operations. Advanced workflow automation reduces manual processes by up to 70%, while role-based access controls ensure data security across all organizational levels. The platform's scalable architecture supports businesses from startups to Fortune 500 companies, with seamless integration capabilities for existing enterprise systems.",
+    technologies: ["React", "Node.js", "PostgreSQL", "Redis", "Docker"],
     year: "2024",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800",
     status: "blue"
   },
   {
-    title: "CryptoVault",
-    category: "FinTech",
-    description: "CryptoVault stands as the most secure and intuitive cryptocurrency trading platform in the market, combining institutional-grade security with cutting-edge analytics and portfolio management tools. Our platform revolutionizes digital asset trading through advanced algorithmic trading strategies, real-time market analysis, and comprehensive risk management systems. Built with military-grade encryption and multi-signature wallet technology, CryptoVault ensures the highest level of security for digital assets while providing lightning-fast trade execution. The platform features advanced charting tools, automated trading bots, yield farming opportunities, and sophisticated portfolio rebalancing algorithms. With support for over 500 cryptocurrencies and integration with major DeFi protocols, CryptoVault empowers both novice and professional traders to maximize their investment potential. The platform's AI-driven market sentiment analysis and predictive modeling have helped users achieve an average return increase of 180%.",
-    technologies: ["Vue.js", "Node.js", "Web3", "Solidity", "MongoDB"],
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800",
+    title: "Revolvo AI Library",
+    category: "EdTech",
+    description: "Revolvo AI Library represents the future of academic resource management, combining traditional library systems with cutting-edge artificial intelligence to create an intelligent knowledge ecosystem specifically designed for colleges and universities. This revolutionary platform transforms how students and faculty discover, access, and interact with academic resources by implementing AI-powered book knowledge systems that understand content at a granular level. The platform features comprehensive cataloging of physical and digital resources, intelligent search capabilities that understand context and intent, and personalized recommendation engines that suggest relevant materials based on coursework, research interests, and academic goals. Advanced AI agents provide instant answers to academic queries by analyzing the knowledge contained within thousands of books, research papers, and scholarly articles. Students can engage in natural language conversations with the system to explore complex topics, receive explanations of difficult concepts, and discover connections between different academic disciplines. The platform includes advanced study tools such as AI-generated summaries, concept mapping, citation assistance, and collaborative research spaces. Faculty members benefit from course integration features, research collaboration tools, and advanced analytics on resource utilization. The system's machine learning algorithms continuously improve recommendations and search accuracy based on user interactions and academic outcomes.",
+    technologies: ["Python", "NLP", "Vector DB", "React", "FastAPI"],
+    year: "2024",
+    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800",
     status: "yellow"
   },
   {
-    title: "MediConnect",
-    category: "HealthTech",
-    description: "MediConnect represents a paradigm shift in healthcare technology, creating the world's most comprehensive ecosystem that seamlessly connects patients, healthcare providers, and medical institutions. This revolutionary platform transforms healthcare delivery through intelligent appointment scheduling, real-time health monitoring, telemedicine capabilities, and AI-powered diagnostic assistance. Built with HIPAA compliance at its core, MediConnect ensures complete data privacy while enabling unprecedented collaboration between healthcare stakeholders. The platform features advanced electronic health records (EHR) integration, automated medication management, predictive health analytics, and emergency response coordination. With its sophisticated patient portal, individuals can access their complete medical history, schedule appointments, communicate with healthcare providers, and receive personalized health recommendations. The platform's AI diagnostic engine assists doctors in identifying potential health issues 40% faster than traditional methods, while its population health management system has improved patient outcomes by 65% across participating healthcare networks.",
-    technologies: ["React Native", "MongoDB", "Socket.io", "FHIR", "TensorFlow"],
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800",
+    title: "Innovation Web Portal",
+    category: "Digital Innovation",
+    description: "The Innovation Web Portal stands as a groundbreaking digital platform that redefines how organizations showcase their technological capabilities, foster innovation, and engage with stakeholders in the digital age. This cutting-edge website combines award-winning design principles with advanced interactive technologies to create an immersive experience that tells compelling stories of innovation and technological excellence. The platform features a dynamic content management system that adapts to different user personas, providing personalized journeys for investors, customers, partners, and potential employees. Advanced animation frameworks create fluid, engaging interactions that guide users through complex technical concepts with clarity and visual appeal. The portal includes comprehensive project showcases with interactive demos, detailed case studies, and real-time performance metrics that demonstrate tangible business impact. Integrated collaboration tools enable seamless communication between teams, clients, and stakeholders, while advanced analytics provide deep insights into user engagement and content performance. The platform's responsive design ensures optimal performance across all devices and screen sizes, while progressive web app capabilities provide native app-like experiences. Built with accessibility and SEO optimization at its core, the portal achieves maximum reach and inclusivity while maintaining the highest standards of performance and user experience.",
+    technologies: ["Next.js", "Three.js", "Framer Motion", "TypeScript", "Vercel"],
+    year: "2024",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800",
     status: "red"
   }
 ];
@@ -64,7 +65,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
     <motion.div
       ref={cardRef}
       style={{ scale, y }}
-      className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-black"
+      className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-gray-900"
     >
       <motion.div 
         style={{ opacity }}
@@ -148,13 +149,30 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
                 <span>{project.year}</span>
               </div>
               
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors"
-              >
-                View Project
-              </motion.button>
+              <div className="flex gap-4">
+                {project.github && (
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 py-3 border border-white/30 text-white rounded-full hover:bg-white/10 transition-colors flex items-center gap-2"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                  </motion.a>
+                )}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors"
+                >
+                  View Project
+                </motion.button>
+              </div>
             </div>
             
             {/* Project Counter */}
@@ -176,7 +194,7 @@ export default function ProjectShowcase() {
   return (
     <section id="projects" className="relative">
       {/* Section Header */}
-      <div className="h-screen flex items-center justify-center bg-black">
+      <div className="h-screen flex items-center justify-center bg-gray-900">
         <div className="text-center px-6">
           <motion.h2
             initial={{ y: 50, opacity: 0 }}

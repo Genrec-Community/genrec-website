@@ -42,7 +42,7 @@ export default function AboutSection() {
   const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
 
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left Side: Image */}
@@ -76,8 +76,8 @@ export default function AboutSection() {
             animate={isInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">About GENREC</h2>
-            <p className="text-xl text-gray-400 mb-8 leading-relaxed">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-black">About GENREC</h2>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               We are a cutting-edge technology company dedicated to crafting exceptional digital experiences. 
               Our team of visionary developers, designers, and strategists work together to push the boundaries 
               of what's possible in the digital realm.
@@ -100,11 +100,11 @@ export default function AboutSection() {
                   }}
                   className="text-center"
                 >
-                  <div className="text-4xl font-bold mb-2">
+                  <div className="text-4xl font-bold mb-2 text-black">
                     <AnimatedCounter value={counter.value} isVisible={counterInView} />
                     {counter.label.includes("Satisfaction") && "%"}
                   </div>
-                  <div className="text-gray-400 text-sm uppercase tracking-wider">
+                  <div className="text-gray-600 text-sm uppercase tracking-wider">
                     {counter.label}
                   </div>
                 </motion.div>
@@ -117,7 +117,7 @@ export default function AboutSection() {
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
+              className="px-8 py-4 border border-black/30 text-black rounded-full hover:bg-black/10 transition-all duration-300"
             >
               Learn More About Us
             </motion.button>
