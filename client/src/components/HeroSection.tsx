@@ -16,7 +16,7 @@ export default function HeroSection() {
       
       // Random starting position from edge of screen
       const angle = Math.random() * 360;
-      const radius = Math.max(window.innerWidth, window.innerHeight) * 0.7;
+      const radius = Math.max(window.innerWidth, window.innerHeight) * 0.8;
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
       
@@ -26,11 +26,11 @@ export default function HeroSection() {
       comet.style.position = "absolute";
       comet.style.left = `${startX}px`;
       comet.style.top = `${startY}px`;
-      comet.style.width = "3px";
-      comet.style.height = "3px";
+      comet.style.width = "6px";
+      comet.style.height = "6px";
       comet.style.background = "white";
       comet.style.borderRadius = "50%";
-      comet.style.boxShadow = "0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4)";
+      comet.style.boxShadow = "0 0 20px rgba(255,255,255,0.9), 0 0 40px rgba(255,255,255,0.5), 0 0 60px rgba(255,255,255,0.3)";
       comet.style.zIndex = "5";
       
       // Create tail
@@ -38,9 +38,9 @@ export default function HeroSection() {
       tail.style.position = "absolute";
       tail.style.right = "100%";
       tail.style.top = "50%";
-      tail.style.width = "50px";
-      tail.style.height = "1px";
-      tail.style.background = "linear-gradient(90deg, transparent, rgba(255,255,255,0.6))";
+      tail.style.width = "80px";
+      tail.style.height = "2px";
+      tail.style.background = "linear-gradient(90deg, transparent, rgba(255,255,255,0.8))";
       tail.style.transform = "translateY(-50%)";
       comet.appendChild(tail);
       
@@ -87,28 +87,8 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* Radial Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-radial from-gray-900/30 via-black to-black" />
-      
-      {/* Static Light Rays */}
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => {
-          const angle = (i * 360) / 50;
-          const opacity = Math.random() * 0.3 + 0.1;
-          return (
-            <div
-              key={i}
-              className="absolute left-1/2 top-1/2 w-0.5 bg-gradient-to-b from-white/40 to-transparent"
-              style={{
-                height: `${Math.random() * 400 + 200}px`,
-                transform: `translate(-50%, -50%) rotate(${angle}deg)`,
-                transformOrigin: "center center",
-                opacity: opacity,
-              }}
-            />
-          );
-        })}
-      </div>
+      {/* Clean Black Background */}
+      <div className="absolute inset-0 bg-black" />
 
       {/* Hero Content */}
       <div className="relative z-10 text-center">
