@@ -53,28 +53,34 @@ export default function HeroSection() {
       
       container.appendChild(comet);
 
-      // Animate comet toward center with easing
+      // Animate comet toward center and disappear when approaching GENREC
       const animation = comet.animate([
         {
           left: `${direction.x}px`,
           top: `${direction.y}px`,
           opacity: "0",
-          transform: "scale(0.5)"
+          transform: "scale(0.3)"
         },
         {
-          left: `${centerX + (Math.random() - 0.5) * 100}px`,
-          top: `${centerY + (Math.random() - 0.5) * 100}px`,
+          left: `${centerX + (direction.x - centerX) * 0.3}px`,
+          top: `${centerY + (direction.y - centerY) * 0.3}px`,
           opacity: "1",
           transform: "scale(1)"
         },
         {
-          left: `${centerX + (Math.random() - 0.5) * 50}px`,
-          top: `${centerY + (Math.random() - 0.5) * 50}px`,
+          left: `${centerX + (Math.random() - 0.5) * 150}px`,
+          top: `${centerY + (Math.random() - 0.5) * 150}px`,
+          opacity: "0.8",
+          transform: "scale(0.8)"
+        },
+        {
+          left: `${centerX + (Math.random() - 0.5) * 80}px`,
+          top: `${centerY + (Math.random() - 0.5) * 80}px`,
           opacity: "0",
-          transform: "scale(0.3)"
+          transform: "scale(0.1)"
         }
       ], {
-        duration: 3000 + Math.random() * 2000,
+        duration: 2500 + Math.random() * 1500,
         easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
       });
 
@@ -84,12 +90,12 @@ export default function HeroSection() {
     };
 
     // Create initial comets
-    for (let i = 0; i < 20; i++) {
-      setTimeout(createComet, i * 300);
+    for (let i = 0; i < 50; i++) {
+      setTimeout(createComet, i * 100);
     }
 
     // Continue creating comets
-    const interval = setInterval(createComet, 1200);
+    const interval = setInterval(createComet, 400);
     
     return () => {
       clearInterval(interval);
@@ -102,8 +108,33 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* Clean Black Background */}
-      <div className="absolute inset-0 bg-black" />
+      {/* Space Background with Stars */}
+      <div className="absolute inset-0 bg-black">
+        {/* Static Stars */}
+        {[...Array(200)].map((_, i) => {
+          const size = Math.random() * 3 + 1;
+          const opacity = Math.random() * 0.8 + 0.2;
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const delay = Math.random() * 3;
+          
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white animate-pulse"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${x}%`,
+                top: `${y}%`,
+                opacity: opacity,
+                animationDelay: `${delay}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+              }}
+            />
+          );
+        })}
+      </div>
 
       {/* Hero Content */}
       <div className="relative z-10 text-center">

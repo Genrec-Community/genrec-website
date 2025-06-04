@@ -48,11 +48,17 @@ export default function FloatingHeader() {
       <motion.nav
         animate={{
           backgroundColor: isScrolled 
-            ? "rgba(0, 0, 0, 0.8)" 
-            : "rgba(255, 255, 255, 0.05)",
+            ? "rgba(0, 0, 0, 0.6)" 
+            : "rgba(255, 255, 255, 0.03)",
+          backdropFilter: "blur(20px)",
         }}
         transition={{ duration: 0.3 }}
-        className="glass-morphism rounded-2xl px-6 py-4 backdrop-blur-xl"
+        className="rounded-2xl px-6 py-4 border border-white/10"
+        style={{
+          backgroundColor: isScrolled ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.03)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+        }}
       >
         <div className="flex items-center justify-center w-full">
           <div className="flex items-center space-x-12">
