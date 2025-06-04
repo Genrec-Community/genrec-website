@@ -51,7 +51,7 @@ export default function ProjectShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start start", "end end"]
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(projects.length - 1) * 100}%`]);
@@ -61,7 +61,7 @@ export default function ProjectShowcase() {
       id="projects" 
       ref={containerRef}
       className="relative overflow-hidden"
-      style={{ height: "400vh" }}
+      style={{ height: `${projects.length * 100}vh` }}
     >
       <div className="sticky top-0 h-screen flex items-center">
         <div className="w-full">
