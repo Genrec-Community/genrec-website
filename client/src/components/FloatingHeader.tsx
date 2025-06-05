@@ -8,8 +8,10 @@ export default function FloatingHeader() {
   const scrollToSection = useScrollToSection();
 
   const handleNavClick = (section: string) => {
-    scrollToSection(section);
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // Close menu first
+    setTimeout(() => {
+      scrollToSection(section); // Scroll after menu closes
+    }, 300);
   };
 
   useEffect(() => {
@@ -96,7 +98,7 @@ export default function FloatingHeader() {
                   onClick={() => handleNavClick(section)}
                 >
                   {section}
-                </motion.a>
+                </motion.button>
               ))}
             </div>
           </motion.div>
@@ -104,10 +106,9 @@ export default function FloatingHeader() {
 
         {/* Mobile Navigation */}
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
+          initial={{ opacity: 0 }}
           animate={{
             opacity: isMenuOpen ? 1 : 0,
-            height: isMenuOpen ? "auto" : 0,
           }}
           transition={{ duration: 0.3 }}
           className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg ${isMenuOpen ? 'block' : 'hidden'}`}
@@ -116,14 +117,15 @@ export default function FloatingHeader() {
             left: "0",
             right: "0",
             bottom: "0",
+            zIndex: 40,
           }}
         >
           <div className="flex flex-col items-center justify-center h-full space-y-8">
             {["about", "projects", "techstack", "motive", "contact"].map((section) => (
-              <motion.a
+              <motion.button
                 key={section}
                 whileHover={{ scale: 1.05 }}
-                className="text-white cursor-pointer text-xl font-medium capitalize"
+                className="text-white cursor-pointer text-xl font-medium capitalize px-8 py-4"
                 onClick={() => handleNavClick(section)}
               >
                 {section}
