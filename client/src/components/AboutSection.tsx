@@ -3,10 +3,10 @@ import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const counters = [
-  { value: 150, label: "Projects Completed" },
-  { value: 98, label: "Client Satisfaction" },
-  { value: 5, label: "Years Experience" },
-  { value: 24, label: "Team Members" }
+  { value: 23, label: "Projects Completed" },
+  { value: 82, label: "Client Satisfaction" },
+  { value: 3, label: "Years Experience" },
+  { value: 8, label: "Team Members" }
 ];
 
 function AnimatedCounter({ value, isVisible }: { value: number; isVisible: boolean }) {
@@ -78,9 +78,9 @@ export default function AboutSection() {
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-8 text-black">About GENREC</h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              We are a cutting-edge technology company dedicated to crafting exceptional digital experiences. 
-              Our team of visionary developers, designers, and strategists work together to push the boundaries 
-              of what's possible in the digital realm.
+              Driven by creativity and powered by technology, we are an 8-member force delivering design excellence.
+With over 3 years of experience and 23 successful projects, we craft solutions that speak for themselves.
+Our commitment to innovation and customer satisfaction fuels everything we do.
             </p>
             
             {/* Animated Counters */}

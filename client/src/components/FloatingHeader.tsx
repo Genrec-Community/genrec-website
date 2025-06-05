@@ -2,36 +2,19 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import useScrollToSection from "@/hooks/useScrollToSection";
 
-const navItems = [
-  { label: "Home", href: "#hero" },
-  { label: "Vision", href: "#motive" },
-  { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Tech", href: "#tech" },
-  { label: "Contact", href: "#contact" },
-];
-
 export default function FloatingHeader() {
-  const [activeSection, setActiveSection] = useState("hero");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollToSection = useScrollToSection();
+
+  const handleNavClick = (section: string) => {
+    scrollToSection(section);
+    setIsMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
-      const sections = ["hero", "motive", "projects", "about", "tech", "contact"];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,69 +22,116 @@ export default function FloatingHeader() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-6xl"
-    >
-      <motion.nav
-        animate={{
-          backgroundColor: isScrolled 
-            ? "rgba(0, 0, 0, 0.6)" 
-            : "rgba(255, 255, 255, 0.03)",
-          backdropFilter: "blur(20px)",
-        }}
-        transition={{ duration: 0.3 }}
-        className="rounded-2xl px-6 py-4 border border-white/10"
-        style={{
-          backgroundColor: isScrolled ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.03)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-        }}
-      >
-        <div className="flex items-center justify-center w-full">
-          <div className="flex items-center space-x-12">
-            <motion.div
+    <div className="fixed top-0 w-full px-4 md:px-6 py-4 md:py-6 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10"
+        >
+          <motion.div
+            animate={{
+              backgroundColor: isScrolled
+                ? "rgba(0, 0, 0, 0.4)"
+                : "rgba(255, 255, 255, 0.1)",
+            }}
+            transition={{ duration: 0.3 }}
+            className="px-4 md:px-8 py-2 md:py-3 rounded-full border border-white/20"
+            style={{
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+            }}
+          >
+            <motion.h1
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-black tracking-tight cursor-pointer"
-              onClick={() => scrollToSection("hero")}
+              className="text-xl md:text-2xl font-black tracking-tight cursor-pointer text-white"
+              onClick={() => handleNavClick("hero")}
             >
               GENREC
-            </motion.div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <motion.button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href.substring(1))}
-                  className="relative text-sm font-medium hover:text-white/80 transition-colors"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ y: 0 }}
+            </motion.h1>
+          </motion.div>
+        </motion.div>
+
+        {/* Mobile Menu Button */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden relative z-10 p-2"
+        >
+          <div className="w-6 h-5 flex flex-col justify-between">
+            <span className={`w-full h-0.5 bg-white transform transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`w-full h-0.5 bg-white transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-full h-0.5 bg-white transform transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </div>
+        </motion.button>
+
+        {/* Desktop Navigation */}
+        <motion.nav
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="hidden md:block"
+        >
+          <motion.div
+            animate={{
+              backgroundColor: isScrolled
+                ? "rgba(0, 0, 0, 0.4)"
+                : "rgba(255, 255, 255, 0.1)",
+            }}
+            transition={{ duration: 0.3 }}
+            className="px-8 py-3 rounded-full border border-white/20"
+            style={{
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+            }}
+          >
+            <div className="flex space-x-6">
+              {["about", "projects", "techstack", "motive", "contact"].map((section) => (
+                <motion.a
+                  key={section}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-white cursor-pointer text-sm font-medium capitalize"
+                  onClick={() => handleNavClick(section)}
                 >
-                  {item.label}
-                  <motion.div
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-white nav-indicator"
-                    animate={{
-                      scaleX: activeSection === item.href.substring(1) ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.button>
+                  {section}
+                </motion.a>
               ))}
             </div>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection("contact")}
-              className="bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors"
-            >
-              Get Started
-            </motion.button>
+          </motion.div>
+        </motion.nav>
+
+        {/* Mobile Navigation */}
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{
+            opacity: isMenuOpen ? 1 : 0,
+            height: isMenuOpen ? "auto" : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg ${isMenuOpen ? 'block' : 'hidden'}`}
+          style={{
+            top: "0",
+            left: "0",
+            right: "0",
+            bottom: "0",
+          }}
+        >
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            {["about", "projects", "techstack", "motive", "contact"].map((section) => (
+              <motion.a
+                key={section}
+                whileHover={{ scale: 1.05 }}
+                className="text-white cursor-pointer text-xl font-medium capitalize"
+                onClick={() => handleNavClick(section)}
+              >
+                {section}
+              </motion.a>
+            ))}
           </div>
-        </div>
-      </motion.nav>
-    </motion.header>
+        </motion.div>
+      </div>
+    </div>
   );
 }

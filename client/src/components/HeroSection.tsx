@@ -280,10 +280,10 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection("about")}
+            onClick={() => scrollToSection("contact")}
             className="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
           >
-            Learn More
+            Contact Us
           </motion.button>
         </motion.div>
       </div>

@@ -1,6 +1,34 @@
+# Dependencies
 node_modules
-dist
+/.pnp
+.pnp.js
+
+# Production build
+/dist
+/build
+
+# Testing
+/coverage
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-server/public
-vite.config.ts.*
-*.tar.gz
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

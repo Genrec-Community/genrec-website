@@ -2,6 +2,23 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
+// Import SOTA model images
+import claudeImg from "../../../attached_assets/claude.png";
+import dockerImg from "../../../attached_assets/docker.png";
+import jpyterImg from "../../../attached_assets/jpyter.png";
+import metaImg from "../../../attached_assets/meta.png";
+import openaiImg from "../../../attached_assets/openai.png";
+import vscImg from "../../../attached_assets/vsc.png";
+
+const sotaModels = [
+  { src: openaiImg, alt: "OpenAI" },
+  { src: claudeImg, alt: "Claude AI" },
+  { src: dockerImg, alt: "Docker" },
+  { src: metaImg, alt: "Meta" },
+  { src: jpyterImg, alt: "Jupyter" },
+  { src: vscImg, alt: "Visual Studio Code" }
+];
+
 const techStack = [
   { name: "React", icon: "⚛️", color: "text-blue-400" },
   { name: "Node.js", icon: "🟢", color: "text-green-400" },
@@ -13,9 +30,7 @@ const techStack = [
   { name: "MongoDB", icon: "🍃", color: "text-green-300" }
 ];
 
-const sponsors = [
-  "Microsoft", "Google", "Apple", "Meta", "Amazon", "Tesla", "Netflix", "Spotify"
-];
+
 
 export default function TechStackCarousel() {
   const ref = useRef(null);
@@ -77,37 +92,41 @@ export default function TechStackCarousel() {
             </motion.div>
           </div>
         </div>
-        
-        {/* Sponsors Section */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
-          className="text-center"
-        >
-          <h3 className="text-2xl font-bold mb-8">Trusted by Industry Leaders</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {sponsors.slice(0, 4).map((sponsor, index) => (
+        {/* End of Tech Stack Logos */}
+
+        {/* SOTA Models and Software Section */}
+        <div className="mt-20">
+          <motion.h3
+            initial={{ y: 30, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          >
+            Powered by SOTA Models and Software
+          </motion.h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {sotaModels.map((img, index) => (
               <motion.div
                 key={index}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ 
-                  duration: 0.5, 
-                  ease: "easeOut", 
-                  delay: index * 0.1 + 1 
+                initial={{ y: 30, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{
+                  duration: 0.6,
+                  ease: "easeOut",
+                  delay: index * 0.1 + 0.8
                 }}
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.2 }
-                }}
-                className="bg-white/5 rounded-2xl p-6 flex items-center justify-center border border-white/10 hover:bg-white/10 transition-colors cursor-pointer"
+                className="flex items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10"
               >
-                <span className="text-lg font-bold text-gray-400">{sponsor}</span>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="h-24 w-auto object-contain"
+                />
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
