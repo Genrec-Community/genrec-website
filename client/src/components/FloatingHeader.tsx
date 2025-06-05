@@ -91,7 +91,7 @@ export default function FloatingHeader() {
           >
             <div className="flex space-x-6">
               {["about", "projects", "techstack", "motive", "contact"].map((section) => (
-                <motion.a
+                <motion.button
                   key={section}
                   whileHover={{ scale: 1.05 }}
                   className="text-white cursor-pointer text-sm font-medium capitalize"
@@ -129,7 +129,7 @@ export default function FloatingHeader() {
                 onClick={() => handleNavClick(section)}
               >
                 {section}
-              </motion.a>
+              </motion.button>
             ))}
           </div>
         </motion.div>
